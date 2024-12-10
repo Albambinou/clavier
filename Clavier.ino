@@ -50,17 +50,29 @@ if (key)
         key2 = keypad.getKey();
       } 
       if (key2 == 'F')
-      Serial.println("La touche 2 a été préssée !, vous pouvez entrer");
+      {
+      Serial.println("La touche F a été préssée !, vous pouvez entrer");
       analogWrite(led_B, 255);
       analogWrite(led_V, 255);
       delay(500);
       analogWrite(led_V, 0); 
       analogWrite(led_B, 0);
+      }
+      else
+    {
+      Serial.println("faux");
+      analogWrite(led_B, 0);
+      analogWrite(led_V, 0);
+      analogWrite(led_R, 255);
+      delay(500);
+      analogWrite(led_R, 0);
+    }
     }
     else
     {
-      Serial.println("La touche 3 a été préssée !");
+      Serial.println("faux");
       analogWrite(led_B, 0);
+      analogWrite(led_V, 0);
       analogWrite(led_R, 255);
       delay(500);
       analogWrite(led_R, 0);
