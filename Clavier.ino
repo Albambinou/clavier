@@ -31,10 +31,40 @@ if (key)
 {
   if (key == '4')
   {
-    Serial.println("La touche 4 a été préssée !, vous pouvez entrer");
-    analogWrite(led_V, 255);
-    delay(500);
-    analogWrite(led_V, 0);
+    analogWrite(led_B, 255);
+    char key2 = 0;
+
+    while (!key2)
+    {
+      key2 = keypad.getKey();
+    }
+
+    if (key2 == '2')
+    {
+      analogWrite(led_B, 0);
+      analogWrite(led_V, 255);
+    
+    key2 = 0;
+    while (!key2)
+      {
+        key2 = keypad.getKey();
+      } 
+      if (key2 == 'F')
+      Serial.println("La touche 2 a été préssée !, vous pouvez entrer");
+      analogWrite(led_B, 255);
+      analogWrite(led_V, 255);
+      delay(500);
+      analogWrite(led_V, 0); 
+      analogWrite(led_B, 0);
+    }
+    else
+    {
+      Serial.println("La touche 3 a été préssée !");
+      analogWrite(led_B, 0);
+      analogWrite(led_R, 255);
+      delay(500);
+      analogWrite(led_R, 0);
+    }
   }
   else
   {
