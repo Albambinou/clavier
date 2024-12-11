@@ -1,3 +1,24 @@
+/**************************************************************************
+ * Nom du Programme      : Clavier.ino
+ * Auteur                : Alban de Farcy de Pontfarcy
+ * Date de création      : 03/12/2024
+ * Dernière modification : 11/12/2024
+ * Version               : 1.5
+ * Description           :
+ *   Ce programme a pour but de faire fontionner un clavier avec un mot de passe défini au préalable
+ *
+ * Utilisation           :
+ *   Instructions pour exécuter ou utiliser le programme, y compris les 
+ *   dépendances nécessaires, les paramètres en ligne de commande, etc.
+ *   Par exemple : Exécuter avec Python 3.9 ou plus récent : `python main.py`.
+ *
+ * Pré-requis            :
+ * Installer la bibliothèque Keypad.h
+ *
+ * Copyright             :
+ *   © 2024 Alban de FArcy de Pontfarcy
+ **************************************************************************/
+
 #include <Keypad.h>
 #define COLS 4
 #define ROWS 4
@@ -70,6 +91,14 @@ if(key1 == e1 && key2 == e2 && key3 == e3 && key4 == e4)
   }
 else
   {
+    Serial.print("Le code ");
+    Serial.print (key1);
+    Serial.print (key2);
+    Serial.print (key3);
+    Serial.print (key4);
+    Serial.println(" n'est pas correct");
+    Serial.println();
+
     analogWrite(led_R, 255);
     delay(500);
     analogWrite(led_R, 0);
@@ -82,6 +111,7 @@ else
 }
 if (securite == 3)
   {
+    Serial.print("Vous avez effectué trop d'essais, veuillez attendre 5 secondes");
     analogWrite(led_R, 255);
     delay(5000);
     analogWrite(led_R, 0);
