@@ -7,11 +7,6 @@
  * Description           :
  *   Ce programme a pour but de faire fontionner un clavier avec un mot de passe défini au préalable
  *
- * Utilisation           :
- *   Instructions pour exécuter ou utiliser le programme, y compris les 
- *   dépendances nécessaires, les paramètres en ligne de commande, etc.
- *   Par exemple : Exécuter avec Python 3.9 ou plus récent : `python main.py`.
- *
  * Pré-requis            :
  * Installer la bibliothèque Keypad.h
  *
