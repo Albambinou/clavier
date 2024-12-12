@@ -1,19 +1,3 @@
-/**************************************************************************
- * Nom du Programme      : Clavier.ino
- * Auteur                : Alban de Farcy de Pontfarcy
- * Date de création      : 03/12/2024
- * Dernière modification : 11/12/2024
- * Version               : 1.5
- * Description           :
- *   Ce programme a pour but de faire fontionner un clavier avec un mot de passe défini au préalable
- *
- * Pré-requis            :
- * Installer la bibliothèque Keypad.h
- *
- * Copyright             :
- *   © 2024 Alban de Farcy de Pontfarcy
- **************************************************************************/
-
 #include <Keypad.h>
 #define COLS 4
 #define ROWS 4
@@ -34,10 +18,10 @@ byte rowPins[ROWS] = {8, 9, 10, 11};
 byte colPins[COLS] = {3, 4, 5, 6};
 
 // Mot de passe :
-char e1 =  'E';
-char e2 =  'B';
-char e3 =  '6';
-char e4 =  '9';
+char k1 =  'E';
+char k2 =  'B';
+char k3 =  '6';
+char k4 =  '9';
 
 char key1;
 char key2;
@@ -72,7 +56,7 @@ while (!key4)
      key4 = keypad.getKey();
     } 
 
-if(key1 == e1 && key2 == e2 && key3 == e3 && key4 == e4)
+if(key1 == k1 && key2 == k2 && key3 == k3 && key4 == k4)
   {
     analogWrite(led_V, 255);
     delay(1000);
