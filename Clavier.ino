@@ -11,7 +11,7 @@
  * Installer la bibliothèque Keypad.h
  *
  * Copyright             :
- *   © 2024 Alban de FArcy de Pontfarcy
+ *   © 2024 Alban de Farcy de Pontfarcy
  **************************************************************************/
 
 #include <Keypad.h>
