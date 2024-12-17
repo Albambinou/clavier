@@ -38,11 +38,11 @@ char k2 =  'B';
 char k3 =  '6';
 char k4 =  '9';
 
+char key[5];
 char key1;
 char key2;
 char key3;
 char key4;
-
 int securite = 0;
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
@@ -50,65 +50,70 @@ Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 void setup()
 {
 Serial.begin(9600);
+Serial.println("Début du programme ");
+Serial.println();
 }
 
 void loop()
 {
-while (!key1)
-    {
-      key1 = keypad.getKey();
-    }
-while (!key2)
-    {
-      key2 = keypad.getKey();
-    }  
-while (!key3)
-    {
-      key3 = keypad.getKey();
-    } 
-while (!key4)
-    {
-     key4 = keypad.getKey();
-    } 
-
-if(key1 == k1 && key2 == k2 && key3 == k3 && key4 == k4)
+  for (int i = 1; i < 5; i++)
   {
+    while (!key[i])
+    {
+      key[i] = keypad.getKey();
+    }
+    analogWrite(led_B, 255);
+    delay(100);
+    analogWrite(led_B, 0);
+  }
+
+if(key[1] == k1 && key[2] == k2 && key[3] == k3 && key[4] == k4)
+  {
+    Serial.print("Le code");
+    Serial.println(" est correct");
+    Serial.println();
+    
     analogWrite(led_V, 255);
     delay(1000);
     analogWrite(led_V, 0);
+    
+  securite = 0;
   
-    key1 = 0;
-    key2 = 0;
-    key3 = 0;
-    key4 = 0;
-    securite = 0;
+    for (int i = 1; i < 5; i++)
+    {
+      key[i] = 0;
+    } 
   }
 else
   {
     Serial.print("Le code ");
-    Serial.print (key1);
-    Serial.print (key2);
-    Serial.print (key3);
-    Serial.print (key4);
+    
+    for (int i = 1; i < 5; i++)
+    {
+      Serial.print (key[i]);
+    } 
     Serial.println(" n'est pas correct");
     Serial.println();
-
+    
     analogWrite(led_R, 255);
     delay(500);
     analogWrite(led_R, 0);
-  
-    key1 = 0;
-    key2 = 0;
-    key3 = 0;
-    key4 = 0;
+    
     securite++;
+    for (int i = 1; i < 5; i++)
+    {
+      key[i] = 0;
+    } 
 }
+
 if (securite == 3)
   {
-    Serial.print("Vous avez effectué trop d'essais, veuillez attendre 5 secondes");
+    Serial.println("Vous avez effectué trop d'essais, veuillez attendre 5 secondes");
+    
     analogWrite(led_R, 255);
     delay(5000);
     analogWrite(led_R, 0);
+    
     securite = 0;
   }
 }
