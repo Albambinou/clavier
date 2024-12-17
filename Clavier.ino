@@ -5,19 +5,20 @@
  * Dernière modification : 17/12/2024
  * Version               : 1.5
  * Description           :
- *   Ce programme a pour but de faire fontionner un clavier avec un mot de passe défini au préalable
+ *    Ce programme a pour but de faire fontionner un clavier avec un mot de passe défini au préalable
  *
  * Pré-requis            :
- * Installer la bibliothèque Keypad.h
+ *    Installer la bibliothèque Keypad.h
  *
  * Copyright             :
- *   © 2024 Alban de Farcy de Pontfarcy
+ *    © 2024 Alban de Farcy de Pontfarcy
  **************************************************************************/
 
 #include <Keypad.h>
 #define COLS 4
 #define ROWS 4
 
+// Pin LED RGB
 const int led_R = A0;
 const int led_V = A1;
 const int led_B = A2;
@@ -40,19 +41,21 @@ char k2 =  '6';
 char k3 =  '9';
 
 char key[4];
-int securite = 0;
+int essai = 3;
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
 
 void setup()
 {
 Serial.begin(9600);
-Serial.println("Début du programme ");
+Serial.println("Début du programme");
+Serial.println("__________________");
 Serial.println();
 }
 
 void loop()
 {
+  // Boucle pour entrer le code
   for (int i = 0; i < 4; i++)
   {
     while (!key[i])
@@ -60,10 +63,11 @@ void loop()
       key[i] = keypad.getKey();
     }
     analogWrite(led_B, 255);
-    delay(100);
+    delay(125);
     analogWrite(led_B, 0);
   }
 
+// Vérification du code entré
 if(key[0] == k0 && key[1] == k1 && key[2] == k2 && key[3] == k3)
   {
     Serial.print("Le code");
@@ -74,7 +78,7 @@ if(key[0] == k0 && key[1] == k1 && key[2] == k2 && key[3] == k3)
     delay(1000);
     analogWrite(led_V, 0);
     
-  securite = 0;
+  essai = 3;
   
     for (int i = 0; i < 4; i++)
     {
@@ -89,23 +93,24 @@ else
     {
       Serial.print (key[i]);
     }
-    
     Serial.println(" n'est pas correct");
+    essai--;
+    Serial.print("Il vous reste ");
+    Serial.print(essai);
+    Serial.println(" essais");
     Serial.println();
     
     analogWrite(led_R, 255);
-    delay(500);
+    delay(1000);
     analogWrite(led_R, 0);
-    
-    securite++;
     
     for (int i = 0; i < 4; i++)
     {
       key[i] = 0;
     } 
 }
-
-if (securite == 3)
+// Sécurité de temps d'attente si trop d'essais ont été effectués
+if (essai == 0)
   {
     Serial.println("Vous avez effectué trop d'essais, veuillez attendre 5 secondes");
     
@@ -113,6 +118,6 @@ if (securite == 3)
     delay(5000);
     analogWrite(led_R, 0);
     
-    securite = 0;
+    essai = 0;
   }
 }
