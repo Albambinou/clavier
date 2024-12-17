@@ -118,6 +118,6 @@ if (essai == 0)
     delay(5000);
     analogWrite(led_R, 0);
     
-    essai = 0;
+    essai = 3;
   }
 }
