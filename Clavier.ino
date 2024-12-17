@@ -39,10 +39,7 @@ char k3 =  '6';
 char k4 =  '9';
 
 char key[5];
-char key1;
-char key2;
-char key3;
-char key4;
+
 int securite = 0;
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
