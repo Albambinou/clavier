@@ -3,7 +3,7 @@
  * Auteur                : Alban de Farcy de Pontfarcy
  * Date de création      : 03/12/2024
  * Dernière modification : 17/12/2024
- * Version               : 1.6
+ * Version               : 1.5
  * Description           :
  *   Ce programme a pour but de faire fontionner un clavier avec un mot de passe défini au préalable
  *
@@ -13,6 +13,7 @@
  * Copyright             :
  *   © 2024 Alban de Farcy de Pontfarcy
  **************************************************************************/
+
 #include <Keypad.h>
 #define COLS 4
 #define ROWS 4
@@ -33,12 +34,12 @@ byte rowPins[ROWS] = {8, 9, 10, 11};
 byte colPins[COLS] = {3, 4, 5, 6};
 
 // Mot de passe :
-char k1 =  'E';
-char k2 =  'B';
-char k3 =  '6';
-char k4 =  '9';
+char k0 =  'E';
+char k1 =  'B';
+char k2 =  '6';
+char k3 =  '9';
 
-char key[5];
+char key[4];
 int securite = 0;
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
@@ -52,7 +53,7 @@ Serial.println();
 
 void loop()
 {
-  for (int i = 1; i < 5; i++)
+  for (int i = 0; i < 4; i++)
   {
     while (!key[i])
     {
@@ -63,7 +64,7 @@ void loop()
     analogWrite(led_B, 0);
   }
 
-if(key[1] == k1 && key[2] == k2 && key[3] == k3 && key[4] == k4)
+if(key[0] == k0 && key[1] == k1 && key[2] == k2 && key[3] == k3)
   {
     Serial.print("Le code");
     Serial.println(" est correct");
@@ -75,7 +76,7 @@ if(key[1] == k1 && key[2] == k2 && key[3] == k3 && key[4] == k4)
     
   securite = 0;
   
-    for (int i = 1; i < 5; i++)
+    for (int i = 0; i < 4; i++)
     {
       key[i] = 0;
     } 
@@ -84,7 +85,7 @@ else
   {
     Serial.print("Le code ");
     
-    for (int i = 1; i < 5; i++)
+    for (int i = 0; i < 4; i++)
     {
       Serial.print (key[i]);
     }
@@ -98,7 +99,7 @@ else
     
     securite++;
     
-    for (int i = 1; i < 5; i++)
+    for (int i = 0; i < 4; i++)
     {
       key[i] = 0;
     } 
