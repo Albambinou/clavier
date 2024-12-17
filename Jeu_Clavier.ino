@@ -1,11 +1,11 @@
 /**************************************************************************
  * Nom du Programme      : Clavier.ino
  * Auteur                : Alban de Farcy de Pontfarcy
- * Date de création      : 03/12/2024
+ * Date de création      : 17/12/2024
  * Dernière modification : 17/12/2024
  * Version               : 1.5
  * Description           :
- *   Ce programme a pour but de faire fontionner un clavier avec un mot de passe défini au préalable
+ *   Ce programme a pour but de trouver le code avec comme seul indication, le texte sur l'écran. exemple : 3 bon caractères dont 1 au bon endroit
  *
  * Pré-requis            :
  * Installer la bibliothèque Keypad.h
