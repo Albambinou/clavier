@@ -39,7 +39,6 @@ char k3 =  '6';
 char k4 =  '9';
 
 char key[5];
-
 int securite = 0;
 
 Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
@@ -88,7 +87,8 @@ else
     for (int i = 1; i < 5; i++)
     {
       Serial.print (key[i]);
-    } 
+    }
+    
     Serial.println(" n'est pas correct");
     Serial.println();
     
@@ -97,6 +97,7 @@ else
     analogWrite(led_R, 0);
     
     securite++;
+    
     for (int i = 1; i < 5; i++)
     {
       key[i] = 0;
